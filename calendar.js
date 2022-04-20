@@ -2,14 +2,14 @@ const cheerio = require("cheerio");
 const axios = require("axios").default;
 
 async function getJSON() {
-    let agenda = {
-        Lundi : [],
-        Mardi : [],
-        Mercredi : [],
-        Jeudi : [],
-        Vendredi : [],
-        Samedi : [],
-        Dimanche : []
+    let schedule = {
+        Monday : [],
+        Tuesday : [],
+        Wednesday : [],
+        Thursday : [],
+        Friday : [],
+        Saturday : [],
+        Sunday : []
     };
 
     try {
@@ -40,7 +40,7 @@ async function getJSON() {
                 let vf = false;
                 if($('.epis', el).text().includes("vf")) vf = true;
                 
-                agenda[day].push(
+                schedule[day].push(
                     {
                         title : title, 
                         number : number,
@@ -53,7 +53,7 @@ async function getJSON() {
             })
         })
 
-        return agenda;
+        return schedule;
 
     } catch(e){
         console.log(e);
